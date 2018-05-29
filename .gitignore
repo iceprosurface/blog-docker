@@ -1,3 +1,17 @@
 node_modules
 backup.tar.gz
+
 docker/mongo/db/
+docker/nginx/log/
+docker/nginx/conf.d/!default
+docker/nginx/www/!default
+docker/mongo/db/!default
+docker/nginx/log/!default
+
+docker/nginx/transmission/download/
+docker/transmission/info/
+docker/transmission/incomplete/
+
+docker/transmission/download/!default
+docker/transmission/info/!default
+docker/transmission/incomplete/!default

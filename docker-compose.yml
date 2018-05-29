@@ -1,5 +1,15 @@
 version: "3"
 services:
+  nginx:
+    restart: always
+    image: nginx:1.11.6-alpine
+    ports:
+      - 80:80
+      # - 443:443
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/log:/var/log/nginx
+      - ./docker/nginx/www:/var/www
   node:
     build: ./docker/node
     volumes:
@@ -24,7 +34,7 @@ services:
     image: "dperson/transmission"
     container_name: transmission
     ports:
-      - 9091:9091
+      - "9091:9091/tcp"
     volumes:
       - ./docker/transmission/download:/var/lib/transmission-daemon/downloads
       - ./docker/transmission/incomplete:/var/lib/transmission-daemon/incomplete
