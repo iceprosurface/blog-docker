@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://mongo:27017/blog',function(err, db){
-    if(err){
-        console.log(err);
-    }else{
-        console.log('OK!');
-    }
-});
+function tryUntilConnect () {
+    mongoose.connect('mongodb://mongo:27017/blog',function(err, db){
+        if(err){
+            setTimeout(tryUntilConnect, 5000)
+            console.log(err, 'next call in 5s');
+        }else{
+            console.log('OK!');
+        }
+    });
+}
 
+tryUntilConnect();
 var viewsSchema = new Schema({
     key: {type: String, index: true},
     views: Number

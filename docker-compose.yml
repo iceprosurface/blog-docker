@@ -4,8 +4,11 @@ services:
     build: ./docker/node
     volumes:
       - ./docker/node/app:/app
+      - /app/node_modules
     ports:
      - "3000:3000/tcp"
+    depends_on:
+      - mongo
   mongo:
     restart: on-failure
     image:  mongo:3.4
@@ -16,3 +19,14 @@ services:
     command: --maxConns 4096
     sysctls:
       net.core.somaxconn: 16240
+  transmission:
+    restart: always
+    image: "dperson/transmission"
+    container_name: transmission
+    ports:
+      - 9091:9091
+    volumes:
+      - ./docker/transmission/download:/var/lib/transmission-daemon/downloads
+      - ./docker/transmission/incomplete:/var/lib/transmission-daemon/incomplete
+      - ./docker/transmission/info:/var/lib/transmission-daemon/info
+      - ./docker/transmission/.config:/etc/transmission-daemon
