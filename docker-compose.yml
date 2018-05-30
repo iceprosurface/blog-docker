@@ -36,7 +36,7 @@ services:
     ports:
       - "9091:9091/tcp"
     volumes:
-      - ./docker/transmission/download:/var/lib/transmission-daemon/downloads
+      - ./docker/transmission/download:/var/lib/transmission-daemon/Downloads
       - ./docker/transmission/incomplete:/var/lib/transmission-daemon/incomplete
       - ./docker/transmission/info:/var/lib/transmission-daemon/info
       - ./docker/transmission/.config:/etc/transmission-daemon
