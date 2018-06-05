@@ -10,6 +10,7 @@ services:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ./docker/nginx/log:/var/log/nginx
       - ./docker/nginx/www:/var/www
+      - ./docker/transmission/download:/download
   node:
     build: ./docker/node
     volumes:
